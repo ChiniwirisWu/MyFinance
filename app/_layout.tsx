@@ -1,24 +1,25 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { Tabs } from "expo-router";
+import { useFonts } from "expo-font";
+import LoadingScreen from "@/components/Shared/LoadingScreen";
+import DatabaseProvider from "@/components/Shared/DatabaseProvider";
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+export default function RootLayout(){
 
-export const unstable_settings = {
-  anchor: '(tabs)',
+  let [fonts] = useFonts({
+    VT323: require("@/assets/fonts/VT323-Regular.ttf")
+  });
+
+  if(fonts){
+    return (
+      <DatabaseProvider>
+         <Tabs initialRouteName="(tabs)/(home-pages)">
+          <Tabs.Screen name="(tabs)/(home-pages)" options={{href:"/(tabs)/(home-pages)", headerShown: false}} />
+          <Tabs.Screen name="(tabs)/settings" options={{headerShown: false}} />
+        </Tabs>
+      </DatabaseProvider>
+    );
+
+  } else {
+     return <LoadingScreen text="Loading fonts..." />
+  }
 };
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
-}
