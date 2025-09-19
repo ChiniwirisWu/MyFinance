@@ -4,10 +4,29 @@ import { Fonts } from "./fonts";
 export const g_styles = StyleSheet.create({
   container: { 
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "#eee",
     paddingVertical: 20,
     paddingHorizontal: 20,
     color: "#fff",
+  },
+
+  label: {
+    fontSize: 25,
+    color: "#000",
+    fontFamily: Fonts.vt323,
+  },
+
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center'
+  },
+
+  textBorder: {
+    textShadowOffset: {width: 1, height: 1},  
+    textShadowColor: "#000",
+    textShadowRadius: 1
   },
 
   modalContainer: {

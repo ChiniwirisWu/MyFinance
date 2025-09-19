@@ -1,5 +1,5 @@
 import { View, Text, ActivityIndicator } from "react-native";
-import g_styles from "@/constants/styles";
+import { g_styles } from "@/constants/styles";
 
 export default function LoadingScreen({text}:{text?:string}){
 
